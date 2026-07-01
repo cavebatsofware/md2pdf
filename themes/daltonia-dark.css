@@ -1,0 +1,12 @@
+/* Riposte colorway: daltonia-dark. Color vars only; see base.css for structure.
+ * Source: @cavebatsofware/riposte-design-system styles/palette.css */
+:root {
+  --color-bg: #0a1428;
+  --color-surface-2: #1d2f50;
+  --color-border: #3a4d70;
+  --color-divider: #1f2a44;
+  --color-text: #f0e8d0;
+  --color-muted: #a89a7a;
+  --color-primary: #e8b03a;
+  --color-link-underline: #c4942a;
+}

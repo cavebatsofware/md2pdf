@@ -1,0 +1,12 @@
+/* Riposte colorway: mineral (light). Color vars only; see base.css for structure.
+ * Source: @cavebatsofware/riposte-design-system styles/palette.css */
+:root {
+  --color-bg: #f0ebe1;
+  --color-surface-2: #e6dfd0;
+  --color-border: #d6cdba;
+  --color-divider: #ddd3be;
+  --color-text: #2d2925;
+  --color-muted: #6c6453;
+  --color-primary: #8e4a1f;
+  --color-link-underline: #ad8d63;
+}

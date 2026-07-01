@@ -1,0 +1,12 @@
+/* Riposte colorway: avernus (light). Color vars only; see base.css for structure.
+ * Source: @cavebatsofware/riposte-design-system styles/palette.css */
+:root {
+  --color-bg: #f5f7fb;
+  --color-surface-2: #e9eef7;
+  --color-border: #d8e2f0;
+  --color-divider: #e2eaf3;
+  --color-text: #1a2438;
+  --color-muted: #5e6878;
+  --color-primary: #4f6dab;
+  --color-link-underline: #a3b6d2;
+}

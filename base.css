@@ -1,0 +1,223 @@
+/*  Riposte print stylesheet for markdown -> PDF (pandoc + weasyprint): base.
+ *
+ *  Theme-agnostic layer (typography, spacing, structure, status colors), the
+ *  way the design system splits tokens.css from palette.css. Color vars come
+ *  from a sibling themes/<colorway>.css passed after this file. Values track
+ *  @cavebatsofware/riposte-design-system styles/tokens.css.
+ */
+
+/*  Bundle the real static brand fonts so weasyprint uses them directly. Without
+ *  this, fontconfig substitutes a missing 'Inter' with a variable Noto Sans
+ *  that weasyprint mis-renders (digits and '#' drop out). Paths resolve
+ *  relative to this stylesheet (~/.config/md2pdf/fonts/). Static weights only,
+ *  the variable builds trigger the same rendering bug. */
+@font-face {
+  font-family: 'Inter';
+  font-weight: 400;
+  font-style: normal;
+  src: url('fonts/Inter-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-weight: 500;
+  font-style: normal;
+  src: url('fonts/Inter-Medium.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-weight: 600;
+  font-style: normal;
+  src: url('fonts/Inter-SemiBold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-weight: 700;
+  font-style: normal;
+  src: url('fonts/Inter-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-weight: 400;
+  font-style: italic;
+  src: url('fonts/Inter-Italic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-weight: 500;
+  font-style: italic;
+  src: url('fonts/Inter-MediumItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-weight: 600;
+  font-style: italic;
+  src: url('fonts/Inter-SemiBoldItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-weight: 700;
+  font-style: italic;
+  src: url('fonts/Inter-BoldItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-weight: 400;
+  font-style: normal;
+  src: url('fonts/JetBrainsMono-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-weight: 700;
+  font-style: normal;
+  src: url('fonts/JetBrainsMono-Bold.ttf') format('truetype');
+}
+
+:root {
+  --font-body: 'Inter', 'Noto Sans SC', 'Noto Color Emoji', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Noto Sans SC', monospace;
+
+  /* status colors: constant across colorways */
+  --color-success: #2f9e6e;
+  --color-warning: #c98a1b;
+  --color-info: #2b7fb8;
+  --color-danger: #b91c1c;
+}
+
+@page {
+  size: Letter;
+  margin: 1.4cm 1.5cm;
+  /* Paint the page box itself so the theme background covers the full sheet,
+     including the margin band, regardless of root-background propagation. */
+  background: var(--color-bg);
+  @bottom-center {
+    content: counter(page) ' / ' counter(pages);
+    color: var(--color-muted);
+    font-family: 'Inter', sans-serif;
+    font-size: 8.5pt;
+  }
+}
+
+/* Background on the root element propagates to the whole page canvas (incl.
+   the margin area), so it is not clipped to the content box. */
+html {
+  font-size: 10.5pt;
+  background: var(--color-bg);
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  line-height: 1.5;
+  font-weight: 400;
+  max-width: 100%;
+  margin: 0;
+}
+
+/* pandoc renders a visible title block from `--metadata title`. Keep the
+   metadata (it sets the PDF/<title>) but don't print it as a heading. */
+#title-block-header { display: none; }
+
+/* ---- headings ---- */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-primary);
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 1em 0 0.4em;
+  page-break-after: avoid;
+}
+h1 {
+  font-size: 2rem;
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 0.25em;
+  margin-top: 0;
+}
+h2 {
+  font-size: 1.5rem;
+  border-bottom: 1px solid var(--color-divider);
+  padding-bottom: 0.2em;
+}
+h3 { font-size: 1.25rem; font-weight: 600; }
+h4 { font-size: 1.125rem; font-weight: 600; }
+h5, h6 { font-size: 1rem; font-weight: 600; color: var(--color-muted); }
+
+/* ---- text flow ---- */
+p, ul, ol, blockquote, table, pre { margin: 0 0 0.6em; }
+li { margin: 0.15em 0; }
+li > ul, li > ol { margin: 0.15em 0 0.15em; }
+
+a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-decoration-color: var(--color-link-underline);
+  text-underline-offset: 2px;
+}
+
+strong { font-weight: 700; }
+em { font-style: italic; }
+
+/* ---- code ---- */
+code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--color-surface-2);
+  padding: 0.12em 0.34em;
+  border-radius: 0.375rem;
+}
+pre {
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  line-height: 1.45;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: 0.625rem;
+  padding: 0.8em 1em;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  page-break-inside: avoid;
+}
+pre code {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  font-size: 1em;
+}
+
+/* ---- blockquote ---- */
+blockquote {
+  margin-left: 0;
+  padding: 0.2em 0 0.2em 1em;
+  border-left: 3px solid var(--color-primary);
+  color: var(--color-muted);
+}
+blockquote > :last-child { margin-bottom: 0; }
+
+/* ---- tables ---- */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.92em;
+  page-break-inside: avoid;
+}
+th, td {
+  border: 1px solid var(--color-border);
+  padding: 0.4em 0.6em;
+  text-align: left;
+  vertical-align: top;
+}
+th {
+  background: var(--color-surface-2);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* ---- rules, images ---- */
+hr {
+  border: 0;
+  border-top: 1px solid var(--color-divider);
+  margin: 1.6em 0;
+}
+img { max-width: 100%; }
+
+/* ---- task lists (gfm) ---- */
+ul.task-list { list-style: none; padding-left: 1em; }
+ul.task-list li input { margin-right: 0.4em; }

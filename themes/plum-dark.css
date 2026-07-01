@@ -1,0 +1,12 @@
+/* Riposte colorway: plum-dark. Color vars only; see base.css for structure.
+ * Source: @cavebatsofware/riposte-design-system styles/palette.css */
+:root {
+  --color-bg: #1c1220;
+  --color-surface-2: #34253a;
+  --color-border: #3f2d46;
+  --color-divider: #382740;
+  --color-text: #f3e1d3;
+  --color-muted: #ad9a9f;
+  --color-primary: #c884b6;
+  --color-link-underline: #b3829e;
+}

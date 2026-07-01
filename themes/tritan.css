@@ -1,0 +1,12 @@
+/* Riposte colorway: tritan (light). Color vars only; see base.css for structure.
+ * Source: @cavebatsofware/riposte-design-system styles/palette.css */
+:root {
+  --color-bg: #e6e8df;
+  --color-surface-2: #d6d9ce;
+  --color-border: #c0c4ae;
+  --color-divider: #ccd0be;
+  --color-text: #1a2818;
+  --color-muted: #525c44;
+  --color-primary: #2c5538;
+  --color-link-underline: #8a2818;
+}

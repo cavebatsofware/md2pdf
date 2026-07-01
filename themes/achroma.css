@@ -1,0 +1,12 @@
+/* Riposte colorway: achroma (light). Color vars only; see base.css for structure.
+ * Source: @cavebatsofware/riposte-design-system styles/palette.css */
+:root {
+  --color-bg: #ffffff;
+  --color-surface-2: #f0f0f0;
+  --color-border: #000000;
+  --color-divider: #cccccc;
+  --color-text: #000000;
+  --color-muted: #404040;
+  --color-primary: #0000aa;
+  --color-link-underline: #000000;
+}

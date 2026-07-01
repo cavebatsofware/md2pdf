@@ -1,0 +1,12 @@
+/* Riposte colorway: warm-dark. Color vars only; see base.css for structure.
+ * Source: @cavebatsofware/riposte-design-system styles/palette.css */
+:root {
+  --color-bg: #131826;
+  --color-surface-2: #232c44;
+  --color-border: #2e3a55;
+  --color-divider: #2a3349;
+  --color-text: #ece4d4;
+  --color-muted: #a59c87;
+  --color-primary: #8ab2dd;
+  --color-link-underline: #7a8db3;
+}

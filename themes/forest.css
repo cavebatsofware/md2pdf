@@ -1,0 +1,12 @@
+/* Riposte colorway: forest (light). Color vars only; see base.css for structure.
+ * Source: @cavebatsofware/riposte-design-system styles/palette.css */
+:root {
+  --color-bg: #f5efe4;
+  --color-surface-2: #ede4d0;
+  --color-border: #e6d8b8;
+  --color-divider: #ede1cb;
+  --color-text: #2b2a26;
+  --color-muted: #6c6453;
+  --color-primary: #2d4a37;
+  --color-link-underline: #a89867;
+}
