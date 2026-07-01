@@ -41,12 +41,19 @@ md2pdf() {
         return 1
     fi
     : ${out:=${in:r}.pdf}
+    # Author/date defaults live in metadata.yaml (written at install time).
+    # --metadata-file loses to a document's own frontmatter, so any title:,
+    # author:, or date: in the markdown still wins. Title falls back to the
+    # input filename automatically when the document defines none.
+    local -a metaflags
+    [[ -f "$dir/metadata.yaml" ]] && metaflags=(--metadata-file "$dir/metadata.yaml")
     pandoc "$in" -o "$out" \
         -f gfm+hard_line_breaks -t html5 --standalone \
+        --template="$dir/template.html" \
         --pdf-engine=weasyprint \
         --highlight-style=tango \
-        --css="$dir/base.css" --css="$themecss" \
-        --metadata title="${in:t:r}" \
+        --css="$dir/highlight.css" --css="$dir/base.css" --css="$themecss" \
+        $metaflags \
         && echo "wrote $out ($theme)"
 }
 

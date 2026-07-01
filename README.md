@@ -1,4 +1,4 @@
-# md2pdf — styled PDFs from Markdown, in one command
+# md2pdf - styled PDFs from Markdown, in one command
 
 `md2pdf` is a tiny zsh function that turns a Markdown file into a nicely
 typeset PDF, with 16 built-in colorways (8 hues × light/dark). Just two
@@ -20,9 +20,9 @@ Under the hood it's a two-stage pipeline:
 
 The styling is split the way a real design system splits its tokens:
 
-- `base.css` — theme-agnostic layer: typography, spacing, structure, and the
+- `base.css` - theme-agnostic layer: typography, spacing, structure, and the
   bundled **Inter** and **JetBrains Mono** fonts.
-- `themes/<colorway>.css` — just the color variables for one palette.
+- `themes/<colorway>.css` - just the color variables for one palette.
 
 `base.css` is passed first, then the chosen theme file overrides the color
 tokens, so every colorway shares one consistent layout. Fonts are bundled and
@@ -46,10 +46,13 @@ distro repos and Homebrew).
 ```sh
 git clone https://github.com/CavebatSoftware/md2pdf
 cd md2pdf
-./install.sh
+./install.zsh
+
+# Pass --author <name> to install.zsh to include author metadata in the
+# output PDF
 ```
 
 The installer copies `base.css`, `themes/`, `fonts/`, and the function into
 `~/.config/md2pdf/`, then sources it from your `~/.zshrc`. Restart your shell
 and run `md2pdf --list-themes` to confirm. To remove everything, run
-`./install.sh --uninstall`.
+`./install.zsh --uninstall`.
